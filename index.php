@@ -1,101 +1,43 @@
-<section class= "formulaire">
+<?php
+include ('user.php');
+include ('user-pdo.php');
+session_start();
 
-    <h2 class= "sous-titre" >
-        Connexion
-    </h2>
-    
-    <form class= "form"  method= "post">
-                
-        <div class= "form-group">
-            <input type= "text" name= "login" placeholder= "login" autocomplete= "off">
-        </div>
+var_dump($_SESSION);
+$connexion_user = new User();
+$connexion_user = new userpdo();
+print( $_SESSION['login']);
 
-        <div class= "form-group">
-            <input type= "password" name= "password" placeholder= "password" autocomplete= "off">
-        </div>
-        
-        <div class="form-group">
-            <button type="submit" name= "valider" class="btn ">Valider</button>
-        </div>
+var_dump($connexion_user->isConnected());
+if(isset($_POST['submit'])){
+    $connexion_user->delete($_SESSION['login']);
 
-        <div class="form-group">
-            <button type="submit" name= "logout" class="btn ">Deco</button>
-        </div>
+}
 
-        <div class="form-group">
-            <button type="submit" name= "delete" class="btn ">Delete</button>
-        </div>
-    </form>
-</section>
+if(isset($_POST['deco'])){
+       $connexion_user->disconnect();
+}
+?>
 
-<section class= "formulaireIns">
-
-    <h2 class= "sous-titre" >
-        Inscription
-    </h2>
-
-    <form class= "formIns"  method= "post">
-                
-        <div class= "form-group">
-            <input type= "text" name= "login" placeholder= "login" autocomplete= "off">
-        </div>
-
-        <div class= "form-group">
-            <input type= "password" name= "password" placeholder= "password" autocomplete= "off">
-        </div>
-
-        <div class= "form-group">
-            <input type= "text" name= "email" placeholder= "email" autocomplete= "off">
-        </div>
-
-        <div class= "form-group">
-            <input type= "text" name= "firstname" placeholder= "firstname" autocomplete= "off">
-        </div>
-
-        <div class= "form-group">
-            <input type= "text" name= "lastname" placeholder= "lastname" autocomplete= "off">
-        </div>
-
-        <div class="form-group">
-            <button type="submit" name= "submit" class="btn ">Valider</button>
-        </div>
-
-        <div class="form-group">
-            <button type="submit" name= "logout" class="btn ">Deco</button>
-        </div> 
-    </form>
-</section>
-
-<section class= "formulaireUp">
-
-    <h2 class= "sous-titre" >
-        Update
-    </h2>
-
-    <form class= "formUp"  method= "post">
-
-            <div class= "form-group">
-                <input type= "text" name= "newlogin" placeholder= "newlogin" autocomplete= "off">
-            </div>
-
-            <div class= "form-group">
-                <input type= "password" name= "newpassword" placeholder= "newpassword" autocomplete= "off">
-            </div>
-
-            <div class= "form-group">
-                <input type= "text" name= "newemail" placeholder= "newemail" autocomplete= "off">
-            </div>
-
-            <div class= "form-group">
-                <input type= "text" name= "newfirstname" placeholder= "newfirstname" autocomplete= "off">
-            </div>
-
-            <div class= "form-group">
-                <input type= "text" name= "newlastname" placeholder= "newlastname" autocomplete= "off">
-            </div>
-
-            <div class="form-group">
-                <button type="submit" name= "update" class="btn ">Update</button>
-            </div> 
-    </form>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<a href="inscription.php">inscription</a>
+<a href="connexion.php">connexion</a>
+<a href="update.php">update</a>
+<form class="row g-3" action="" method="POST">
+<div">
+    <button class="btn btn-primary" name="submit" type="submit">supp</button>
+</div>
+<div">
+    <button class="btn btn-primary" name="deco" type="submit">deconnecte</button>
+</div>
+</form>
+</body>
+</html>
